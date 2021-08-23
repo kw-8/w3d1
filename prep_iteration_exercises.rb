@@ -164,6 +164,11 @@ class Array
   end
 
   def my_inject(&blk)
+    acc = self[0]
+    (0...self.length-1).each do |i|
+      acc = blk.call(acc,self[i+1])
+    end
+    acc
   end
 end
 
@@ -177,4 +182,5 @@ end
 # ```
 
 def concatenate(strings)
+  strings.my_inject{|a,b| a +" "+ b}
 end
