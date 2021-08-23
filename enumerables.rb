@@ -41,6 +41,16 @@ class Array
         new_array
     end
 
+    def my_zip(*args)
+        new_array = Array.new(self.length){ Array.new }
+        
+        (0...self.length).to_a.my_each do |i|
+            new_array[i] << self[i]
+            args.each{|arg| new_array[i] << arg[i]}
+        end
+        new_array
+    end
+
     def my_rotate(n=1)
         n = self.length + n if n < 0
         n = n % self.length
