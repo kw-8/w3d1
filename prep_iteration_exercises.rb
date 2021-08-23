@@ -4,6 +4,7 @@
 # factors of a given number.
 
 def factors(num)
+  (1..num).select{|i| num % i == 0}
 end
 
 # ### Bubble Sort
@@ -47,9 +48,34 @@ end
 
 class Array
   def bubble_sort!(&prc)
+    sorted = false
+
+    until sorted
+      sorted = true
+      (0...self.length-1).each do |i|
+        if prc.call(self[i], self[i+1]) == 1
+          self[i], self[i+1] = self[i+1], self[i]
+          sorted = false
+        end
+      end
+    end
+    self
   end
 
   def bubble_sort(&prc)
+    sorted = false
+    new_arr = self.clone
+
+    until sorted
+      sorted = true
+      (0...new_arr.length-1).each do |i|
+        if prc.call(new_arr[i], new_arr[i+1]) == 1
+          new_arr[i], new_arr[i+1] = new_arr[i+1], new_arr[i]
+          sorted = false
+        end
+      end
+    end
+    new_arr
   end
 end
 
