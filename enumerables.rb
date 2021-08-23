@@ -65,4 +65,12 @@ class Array
         end
         new_str[0...-str.length]
     end
+
+    def my_reverse
+        new_arr = []
+        self.my_each do |ele|
+            new_arr = [ele] + new_arr
+        end
+        new_arr
+    end
 end
