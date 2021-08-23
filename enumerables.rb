@@ -40,4 +40,19 @@ class Array
         end
         new_array
     end
+
+    def my_rotate(n=1)
+        n = self.length + n if n < 0
+        n = n % self.length
+
+        result = self[n..-1] + self[0...n]
+    end
+
+    def my_join(str="")
+        new_str = ""
+        self.my_each do |ele|
+            new_str += (ele + str)
+        end
+        new_str[0...-str.length]
+    end
 end
