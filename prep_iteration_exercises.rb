@@ -93,9 +93,18 @@ end
 # words).
 
 def substrings(string)
+  new_arr = []
+  (0...string.length).each do |i|
+    (i...string.length).each do |j|
+      new_arr << string[i..j]
+    end
+  end
+  new_arr
 end
 
 def subwords(word, dictionary)
+  substrings = substrings(word)
+  substrings.select {|word| dictionary.include?(word)}
 end
 
 # ### Doubler
@@ -103,6 +112,7 @@ end
 # array with the original elements multiplied by two.
 
 def doubler(array)
+  array.map!{|ele| ele * 2}
 end
 
 # ### My Each
